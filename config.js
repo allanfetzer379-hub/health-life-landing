@@ -1,10 +1,18 @@
-/* 本阶段仅复制落地页。后续订单页完成后，将 orderUrl 改为 './order.html'。 */
+/* 本地化的落地页、购买页和成功页配置。 */
 window.LANDING_CONFIG = Object.freeze({
   productName: '龍陽丸',
   productText: '純中藥製作，安全有效無副作用',
   oldPrice: '2,778 TWD',
   newPrice: '1,389 TWD',
-  orderUrl: 'http://l9-2b46b06788.207-148-127-110.sslip.io/order.html',
+  orderUrl: './order.html',
+  orderEndpoint: 'https://puremale.top/api/order',
+  orderCountdownMinutes: 15,
+  formType: 'longyangwan_908_l9',
+  formName: '9/8NK龍陽丸中轉（生活網）9',
+  pixelId: '1711415600409281',
+  entryPath: location.pathname.replace(/^\/+/, '').split('/')[0],
+  subid: '',
+  enableTracking: false,
   countdownMinutes: 48,
   exitPopup: true,
   passEntryParameters: true,

@@ -202,5 +202,59 @@
     "bytes": 178784,
     "sha256": "cc8c2063fd58b3c47ce7fd9e186d6f6c8078b775396202bc6656568484ef384a",
     "status": "downloaded"
+  },
+  {
+    "path": "order/img/229d252381cf20019ed8fb9a2e2d1fb34e75f874.svg",
+    "bytes": 946,
+    "sha256": "f70a5ac9865af1821a682227cba914d5cdb9938243a97482bbb1d52157803330",
+    "status": "downloaded"
+  },
+  {
+    "path": "order/img/banner.jpg",
+    "bytes": 141186,
+    "sha256": "bffbc23d073665420c01c9be0ce51cf939e8dd5648412c40e2e25684b8a0cdc1",
+    "status": "downloaded"
+  },
+  {
+    "path": "order/img/before-after-j.jpg",
+    "bytes": 24196,
+    "sha256": "eba22cf4fed89f070d94c89cc29d02858565bb06d0670f4463177754c7a7b824",
+    "status": "downloaded"
+  },
+  {
+    "path": "order/img/before-after-new-es-webp.jpg",
+    "bytes": 25201,
+    "sha256": "5c25bcc9ef7c820bc42d0d5f07a7612ead8cae7e7b556cef531bed01a5e5a98c",
+    "status": "downloaded"
+  },
+  {
+    "path": "order/img/check.svg",
+    "bytes": 1263,
+    "sha256": "4ed1914118f1296196d3cf20755d85116c2d3a76f16cb23782725a34c7063b1d",
+    "status": "downloaded"
+  },
+  {
+    "path": "order/img/gif.gif",
+    "bytes": 802116,
+    "sha256": "48f9751a395d5dee240269296782843891770f495f28110d1a7eb571073e46d3",
+    "status": "downloaded"
+  },
+  {
+    "path": "order/img/gif2-webp.webp",
+    "bytes": 92570,
+    "sha256": "c390d33675531c96939c261159b929fac2b1bfa05c0c230382d36da832363b1c",
+    "status": "downloaded"
+  },
+  {
+    "path": "order/img/product.png",
+    "bytes": 198289,
+    "sha256": "1b58b5fde3079c25f3ec84adcebcc7beab2f717d14814ebd1cb227164fc2fa97",
+    "status": "downloaded"
+  },
+  {
+    "path": "product-main-v2.fast.webp",
+    "bytes": 139890,
+    "sha256": "50ff3046a05aa9e2542e0f9b1e01f228e20a7fbed2e111dd64023affdbbf6e44",
+    "status": "downloaded"
   }
 ]

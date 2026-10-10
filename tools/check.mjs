@@ -15,7 +15,9 @@ for (const item of manifest) {
   const bytes = await readFile(resolve(root, item.path));
   assert.equal(createHash('sha256').update(bytes).digest('hex'), item.sha256, item.path);
 }
-const references = [...html.matchAll(/(?:src|href)="([^"#]+)"/g), ...css.matchAll(/url\(["']?([^"')]+)["']?\)/g)];
+const allHtml = [html, await read('order.html'), await read('thanks.html')].join('\n');
+const allCss = [css, await read('order.css'), await read('thanks.css')].join('\n');
+const references = [...allHtml.matchAll(/(?:src|href)="([^"#]+)"/g), ...allCss.matchAll(/url\(["']?([^"')]+)["']?\)/g)];
 let localCount = 0;
 for (const [, path] of references) {
   if (/^(https?:|data:)/.test(path)) continue;
