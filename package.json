@@ -1,0 +1,11 @@
+{
+  "name": "health-life-landing-local",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static local copy of the supplied landing page",
+  "scripts": {
+    "start": "node tools/server.mjs",
+    "check": "node tools/check.mjs"
+  },
+  "engines": { "node": ">=18" }
+}

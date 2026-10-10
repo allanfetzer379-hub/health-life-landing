@@ -1,0 +1,206 @@
+[
+  {
+    "path": "img/22plus-1761b7df80.jpg",
+    "bytes": 12902,
+    "sha256": "afdeaff85a98432cfedaa4be433a3ad69b2d8fd00933faad4731d6f9bc075987",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/comment__ava1.png",
+    "bytes": 6218,
+    "sha256": "b17b53e383edead8edbb7d1559875c2d51affd634ea18beb9846e17d8e4fd132",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/comment__ava2.png",
+    "bytes": 5774,
+    "sha256": "1d4941f1a3738a3c416faa58b9f49d855eac75b958208669600fd1ea6be27b51",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/comment__ava3.png",
+    "bytes": 5768,
+    "sha256": "91f0c8537fa85ebb8ec0efb817f72041c6ff0acf1e313e50ec57ab3b2787994a",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/comment__ava4.png",
+    "bytes": 6578,
+    "sha256": "8b076148a62e3d0dfbecdd2b40df4ce623d861cfa5ed469e865db453b057705b",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/comment__ava5.png",
+    "bytes": 6073,
+    "sha256": "790894084f252343ea173cd28a857d30776a00447325dafbac684d3cb3177997",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/comment__ava6.png",
+    "bytes": 6371,
+    "sha256": "9a4fe8e192198971c0d41b596187959f73d2b8a0358297a60129f13c5890687e",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/comment__ava7.png",
+    "bytes": 6211,
+    "sha256": "090f3cb064d27692e26f03170ece4d7510b66db5885ed1d95986f2ed7366d44e",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/comment__ava8.png",
+    "bytes": 6174,
+    "sha256": "28b27a6fb64775ca222672976d82918830ee4affe55fac37c4cf633da92d4aa0",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/comment_photo_01.jpg",
+    "bytes": 29708,
+    "sha256": "3025ba515fe313b4979b5b3e9a789962918d881a47f7e8dd535ec0ec8401d221",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/cross.png",
+    "bytes": 257,
+    "sha256": "1dc2aabd701831f577507016b25173e813b4ba43fc3f91fe56621f77d431a678",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/icon__basket.svg",
+    "bytes": 797,
+    "sha256": "c69e651b00bccd511a04840747c26c84d0b5c1f4df967779140064645e6a1eb5",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/icon__clock.svg",
+    "bytes": 441,
+    "sha256": "00a93be74bae5ea1841c770502811ad18b8bd96205816b421c9c9d485b6f1c14",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/icon__comment.svg",
+    "bytes": 702,
+    "sha256": "b2b813f0d269d69c5de003f9105e5b607c1944c4061531f3025bb0e111fd375e",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/icon__eye.svg",
+    "bytes": 429,
+    "sha256": "329f5703465cf366b53fad24d41b2d6407c66d0f943b125827dbedcdae93c91b",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/icon__fb.svg",
+    "bytes": 285,
+    "sha256": "70989bfc7a81e0ee551cca6696b7b28f5e55587a867ce99f65b7bfc464537035",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/icon__gp.svg",
+    "bytes": 2755,
+    "sha256": "4f969e899093fced5269177d5a100335cb5780e1fb2bcb7f461aaf0ef28efec7",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/icon__ham.svg",
+    "bytes": 188,
+    "sha256": "b73fb954a92555b71882fdef337f53d904b2146c985231235b872694163e9637",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/icon__heart.svg",
+    "bytes": 241,
+    "sha256": "0c608fc52894f480c0fcd73972d2877d7a5b567fec3a4d1f4e52d8cae78bc26b",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/icon__search--red.svg",
+    "bytes": 259,
+    "sha256": "77a0b931ca12e12489ab7a250d4dce65d6c1482d1d4838bac879074d958bcb0e",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/icon__search.svg",
+    "bytes": 248,
+    "sha256": "96b35c80231a349bfb90fdb784b4ab8a35232227f64cfecc9d5bae0211a3ee91",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/icon__tw.svg",
+    "bytes": 501,
+    "sha256": "52819830c98cb7a4fc24f84d1c382cd655f99f909a111d81fe227ac6ff0602e6",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/main__img1.jpg",
+    "bytes": 164545,
+    "sha256": "5747ffa19ebcb0b04fee90a56ca5b436e18f69e528c8b29781fe74196a194fd7",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/main__img2.jpg",
+    "bytes": 168653,
+    "sha256": "79e1dcca9656f0151edd7872df7aa1961ea3cab9116908969b5649e9eaa906c3",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/main__img3.jpg",
+    "bytes": 47074,
+    "sha256": "5e979d484473b88e07faafd4e348dfa7849847af34c7c957418852980aa4677a",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/main__img4.jpg",
+    "bytes": 40919,
+    "sha256": "7b6ba1f3c3c0f268784d3ba5046dc819bfbfd50264ece4e1534a5189415d8db5",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/main__result1.jpg",
+    "bytes": 18193,
+    "sha256": "1083bf16521113a3e96cf46c7f827c4a8af57b149b08b99911ed62116cdeb6ad",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/main__result2.jpg",
+    "bytes": 12533,
+    "sha256": "6353ffbd1afce58bea2a4aa94be7dd751fc4bc16bdcaea47b2258b5cee5d213d",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/main__result3.jpg",
+    "bytes": 11659,
+    "sha256": "e7648e624f9bf0f8f651bc4c5817b89231f6a453644f2a9ae7451330592a2967",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/main__result4.jpg",
+    "bytes": 8062,
+    "sha256": "ff4797e63d6122e0612ba3f12de23cd878a5ad1b675bb1a8a133b09254993976",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/product.fast.webp",
+    "bytes": 130852,
+    "sha256": "09049a83f616a3bb5e4344f09aa53a0534ad117fd02d81cd11a75a491b9affa2",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/promo__img.jpg",
+    "bytes": 70566,
+    "sha256": "bb6a939c4f2ff6a97da7b5f292b917ecf7789fa6029c965e39ef0b9e8b158c6e",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/user1.jpg",
+    "bytes": 207392,
+    "sha256": "f311350752a1794d8f41f5a43eac166cd4ae978f94df6a671d187a012a2600a7",
+    "status": "downloaded"
+  },
+  {
+    "path": "img/user2.jpg",
+    "bytes": 178784,
+    "sha256": "cc8c2063fd58b3c47ce7fd9e186d6f6c8078b775396202bc6656568484ef384a",
+    "status": "downloaded"
+  }
+]
