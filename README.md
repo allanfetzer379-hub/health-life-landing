@@ -19,20 +19,18 @@
 - 48 分钟倒计时、离开页面弹窗、弹窗关闭、导航和 CTA 跳转。
 - 可编辑 HTML / CSS / JavaScript，无依赖、无需构建。
 
-本阶段包含完整前端页面，不另建管理后台或数据库。
+管理后台已单独部署：https://allanfetzer379-hub.github.io/health-life-admin/ 。数据库项目为 health-life-orders。
 订购、导航、社交标签与正文链接都沿用原站的“前往订购页”行为；目的地已改为自己网站的 `./order.html`。
 全部页面和素材可以离线浏览；真实订单提交仍需要联网及可用的订单后端。
 
 ## 订单接收接口状态
 
 购买页保留原站表单校验、提交防重复、错误提示和成功后的 `thanks.html` 跳转。
-接口地址沿用原站 `https://puremale.top/api/order`，集中放在 `config.js` 的 `orderEndpoint`，没有新建收单服务。
+2026-10-11 改为自有 Supabase Edge Function `submit-order`，连接配置在 `backend-config.js`，不再向原站接口提交资料。真实客户姓名原样保存，姓名或电话任一命中历史订单时标记重粉，订单仍然入库。
 
-2026-10-10 检查：该接口对 GitHub Pages 来源的 OPTIONS 预检返回 204，但没有 `Access-Control-Allow-Origin` 等允许跨域响应头。因此**目前不能确认新域名可以真实收单**，浏览器会阻止缺少跨域许可的请求。
-正式收单前，需要接口管理员允许来源 `https://allanfetzer379-hub.github.io`、POST 方法和 `Content-Type` 请求头，并在实际 POST 响应中同样返回允许来源的响应头；或在后续后台阶段更换为你自己的接口。
+请求成功且返回订单编号后才跳转成功页；网络失败保留重试编号，避免相同请求重复入库。后台保存 IP、设备、广告来源 ID，匿名客户端不能读取客户资料。
 
-没有向原接口提交测试订单。自动检查中的成功与失败响应都是内存模拟，不代表生产接口真实受理成功。
-不会把失败请求伪装成成功：只有接口返回原站脚本认可的成功响应后才跳到成功页。
+FB/TK 像素由后台「系统设置」保存，在页面加载时读取。默认空配置，不发送广告事件。配置启用后发送浏览事件，下单成功发送 Lead / SubmitForm；这些事件代表提交表单，不代表付款。
 
 ## 最快查看
 
@@ -89,7 +87,8 @@ GitHub 官方步骤：[配置 GitHub Pages 发布来源](https://docs.github.com
 | `app.js` | 产品名填充、链接参数、倒计时、弹窗 |
 | `order.html` / `order.css` | 原购买页结构与原始样式 |
 | `order.js` | 原购买页 15 分钟倒计时、产品名称与价格填充 |
-| `order-bridge.js` | 原站表单接收逻辑，接收地址可配置，广告追踪默认关闭 |
+| `order-bridge.js` | 自有订单提交、格式校验、重试防重复与成功跳转 |
+| `backend-config.js` / `pixels.js` | Supabase 公开连接配置、后台像素设置加载 |
 | `thanks.html` / `thanks.css` / `thanks.js` | 原成功页及站内返回链接 |
 | `img/` | 原始图片与图标 |
 | `order/img/` | 购买页的原图与动图 |
@@ -97,17 +96,17 @@ GitHub 官方步骤：[配置 GitHub Pages 发布来源](https://docs.github.com
 | `preview/` | 本地版桌面与手机预览截图 |
 | `VERIFICATION.md` | 复刻范围、差异及检查结果 |
 
-`config.js` 的 `orderUrl` 已是 `./order.html`；后续后台完成后修改 `orderEndpoint` 即可切换接收地址。
+`config.js` 的 `orderUrl` 是 `./order.html`；订单服务由 `backend-config.js` 配置，不能放入数据库密码或 service-role 密钥。
 如果只想关闭原站的离开弹窗，将 `exitPopup` 改成 `false`。
 `passEntryParameters` 控制跳转时是否携带原站已有的来源与查询参数。
 
 ## 与原站的明确差异
 
-- 广告追踪默认关闭，没有加载原站 Meta Pixel，也没有发送原站统计请求。
+- 未加载原站 Meta Pixel 或统计请求。自有像素由后台设置，未配置时关闭。
 - 保留倒计时重置规则，修复结束时引用未定义变量 `d` 的错误。
 - 首次后退仍展示弹窗，但关闭后再次后退可离开，避免原站无限拦截后退。
 - 增加页面语言、搜索框标签、弹窗键盘关闭及焦点管理，不改视觉样式。
 - 原站的搜索框、手机菜单/搜索图标并未实现实际搜索或展开菜单，本项目保留其原样；社交标签原本也是订购链接，未改为真正的分享功能。
 - 浏览器访问原站时部分素材偶发加载失败；本项目重试下载后全部补齐，显示原始图片，不复刻临时网络故障。
 
-新后台和广告追踪配置留待后续阶段。原收单接口的跨域限制见上文。
+广告链接示例：`?utm_source=facebook&ad_id=你的广告ID`。参数会带入购买页和订单记录；后台支持按广告来源 ID 筛选。

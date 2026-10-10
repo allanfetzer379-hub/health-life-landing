@@ -13,14 +13,14 @@ function harness() {
   const alerts = [], requests = [];
   let resolveRequest;
   const location = { href: 'https://example.github.io/site/order.html?subid=abc&entry_source=test', search: '?subid=abc&entry_source=test', hostname: 'example.github.io', origin: 'https://example.github.io' };
-  const window = { location, LANDING_CONFIG: { orderEndpoint: 'https://orders.example.test/api/order', entryPath: 'site', formType: 'copy-test', formName: 'copy-test', enableTracking: false } };
+  const window = { location, BACKEND_CONFIG: {ready:true,url:'https://orders.example.test',publishableKey:'public'}, LANDING_CONFIG: { orderEndpoint: 'https://orders.example.test/api/order', entryPath: 'site', formType: 'copy-test', formName: 'copy-test', enableTracking: false } };
   const document = { cookie: '', referrer: '', getElementById: () => form, querySelector: () => form, addEventListener() {} };
   vm.runInNewContext(bridge, {
-    window, document, URL, URLSearchParams, Date, alert: message => alerts.push(message),
-    sessionStorage: { getItem: () => '' },
+    window, location, document, URL, URLSearchParams, Date, crypto:{randomUUID:()=> '11111111-1111-4111-8111-111111111111'}, alert: message => alerts.push(message),
+    sessionStorage: { getItem: () => '', setItem(){},removeItem(){} },
     fetch: (url, options) => { requests.push({ url, options }); return new Promise(resolve => { resolveRequest = resolve; }); },
   });
-  return { name, phone, label, button, window, alerts, requests, respond: (ok, body) => resolveRequest({ ok, text: async () => JSON.stringify(body) }) };
+  return { name, phone, label, button, window, alerts, requests, respond: (ok, body) => resolveRequest({ ok, json: async () => body }) };
 }
 const settle = () => new Promise(resolve => setImmediate(resolve));
 const invalid = harness();
@@ -36,19 +36,20 @@ success.name.value = '測試'; success.phone.value = '0900000000';
 success.window.send(1); success.window.send(1);
 assert.equal(success.requests.length, 1, 'Duplicate submit is blocked');
 assert.equal(success.button.disabled, true);
-assert.equal(success.label.textContent, '提交中...');
+assert.equal(success.button.textContent, '提交中…');
 const payload = JSON.parse(success.requests[0].options.body);
 assert.equal(payload.phone, '0900000000');
-assert.equal(payload.form_type, 'copy-test');
-assert.equal(payload.subid, 'abc');
-success.respond(true, { ok: true }); await settle();
-assert.equal(success.window.location.href, '/site/thanks.html?subid=abc&entry_source=test');
+assert.equal(payload.request_id, '11111111-1111-4111-8111-111111111111');
+assert.equal(payload.source, 'test');
+assert.equal(success.requests[0].url,'https://orders.example.test/functions/v1/submit-order');
+success.respond(true, { ok: true,id:'NK-test' }); await settle();
+assert.equal(success.window.location.href, 'https://example.github.io/site/thanks.html?subid=abc&entry_source=test');
 
 const failed = harness();
 failed.name.value = '測試'; failed.phone.value = '+886900000000'; failed.window.send(1);
 failed.respond(false, { ok: false }); await settle();
 assert.equal(failed.button.disabled, false);
-assert.equal(failed.label.textContent, '立即訂購');
+assert.equal(failed.button.textContent, '立即訂購');
 assert.equal(failed.alerts.length, 1);
 failed.window.send(1);
 assert.equal(failed.requests.length, 2, 'Failure permits retry');
