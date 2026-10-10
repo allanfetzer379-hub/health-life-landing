@@ -3,6 +3,12 @@
 基于用户提供的原站公开 HTML、CSS 与素材制作，采集日期：2026-10-10。
 原站：http://l9-2b46b06788.207-148-127-110.sslip.io/
 
+## 当前发布配置
+
+- 仓库：https://github.com/allanfetzer379-hub/health-life-landing
+- GitHub Pages：https://allanfetzer379-hub.github.io/health-life-landing/
+- 发布来源：`main` 分支、仓库根目录。推送更新后 GitHub Pages 会自动重新部署。
+
 ## 本次包含
 
 - 原站文章、导航、图片、评论、产品区、底部按钮与弹窗。
@@ -85,4 +91,4 @@ GitHub 官方步骤：[配置 GitHub Pages 发布来源](https://docs.github.com
 - 原站的搜索框、手机菜单/搜索图标并未实现实际搜索或展开菜单，本项目保留其原样；社交标签原本也是订购链接，未改为真正的分享功能。
 - 浏览器访问原站时部分素材偶发加载失败；本项目重试下载后全部补齐，显示原始图片，不复刻临时网络故障。
 
-后台、订单处理与广告追踪配置留待后续阶段。此项目未替你发布到 GitHub。
+后台、订单处理与广告追踪配置留待后续阶段。
