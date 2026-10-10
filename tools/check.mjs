@@ -22,7 +22,7 @@ let localCount = 0;
 for (const [, path] of references) {
   if (/^(https?:|data:)/.test(path)) continue;
   assert(!path.startsWith('/'), `Root-relative path fails project Pages: ${path}`);
-  await readFile(resolve(root, path));
+  await readFile(resolve(root, path.split('?')[0]));
   localCount++;
 }
 assert(!/fbevents|connect\.facebook|page-tracking/.test(html), 'No production tracking loader');
