@@ -78,7 +78,7 @@
     if (modal.style.display !== 'block') return;
     if (event.key === 'Escape') closePopup();
     if (event.key === 'Tab') {
-      const focusable = Array.from(modal.querySelectorAll('a[href], [tabindex="0"]'));
+      const focusable = Array.from(modal.querySelectorAll('a[href], button, [tabindex="0"]'));
       const first = focusable[0], last = focusable[focusable.length - 1];
       if (event.shiftKey && document.activeElement === first) {
         event.preventDefault(); last.focus();
@@ -88,20 +88,28 @@
     }
   });
   if (config.exitPopup) {
-    document.body.addEventListener('mouseout', event => {
-      if (event.clientY < 0 && !event.relatedTarget) openPopup();
+    const popupTimer = setTimeout(openPopup, 3000);
+    window.addEventListener('pagehide', () => clearTimeout(popupTimer), { once: true });
+  }
+
+  const offer = document.getElementById('product-offer');
+  const floating = document.getElementById('floating-order');
+  const jump = document.getElementById('jump-to-offer');
+  if (offer && floating && jump) {
+    let reachedOffer = false;
+    function updateFloating() {
+      const rect = offer.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.75 && rect.bottom > 0) reachedOffer = true;
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const pastThreshold = scrollable > 0 && window.scrollY / scrollable > 0.3;
+      floating.hidden = reachedOffer || !pastThreshold;
+    }
+    jump.addEventListener('click', () => {
+      offer.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'end' });
     });
-    // 首次后退展示原站弹窗；关闭后再次后退可正常离开，不无限拦截。
-    try {
-      if (!history.state?.landingPopupGuard) {
-        history.pushState({ landingPopupGuard: true }, '', location.href);
-      }
-      window.addEventListener('popstate', () => {
-        if (!shown) {
-          history.pushState({ landingPopupGuard: true }, '', location.href);
-          openPopup();
-        }
-      });
-    } catch (_) { /* file:// 浏览器限制不影响其余交互。 */ }
+    window.addEventListener('scroll', updateFloating, { passive: true });
+    window.addEventListener('resize', updateFloating);
+    window.addEventListener('load', updateFloating);
+    updateFloating();
   }
 })();

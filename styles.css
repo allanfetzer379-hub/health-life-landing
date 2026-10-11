@@ -238,3 +238,16 @@ input,select,textarea,button{max-width:100%}
 .comeback_container p{line-height:14px;font-size:15px}
 .comeback_container{padding:5px}
 }
+
+/* 产品订购与浏览引导 */
+.product-offer{scroll-margin-top:20px;scroll-margin-bottom:24px}
+.product-order-button{margin:24px auto 36px;max-width:480px;line-height:1.35}
+.comeback_container{position:relative;padding-top:74px}
+.comeback_close{position:absolute;right:14px;top:14px;float:none;display:flex;align-items:center;gap:6px;min-height:44px;padding:7px 14px;border:2px solid #444;border-radius:8px;background:#fff;color:#222;font-size:16px;font-weight:700;cursor:pointer}
+.comeback_close span{font-size:28px;line-height:1}
+.comeback_close:hover{background:#eee}
+.comeback_close:focus-visible,.floating-order button:focus-visible,.product-order-button:focus-visible{outline:3px solid #1264ba;outline-offset:4px}
+.floating-order{position:fixed;left:0;right:0;bottom:0;z-index:1000;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);box-shadow:0 -4px 24px #0002;text-align:center}
+.floating-order[hidden]{display:none}
+.floating-order button{width:100%;max-width:480px;min-height:50px;border:0;border-radius:8px;background:#dc2020;color:#fff;font-size:20px;font-weight:700;cursor:pointer}
+@media(max-width:700px){.comeback_container{padding:74px 16px 24px;margin:12px;border-radius:12px}.comeback_container h1{max-width:100%}.comeback_container p{line-height:1.6}.product-order-button{font-size:22px}.floating-order button{font-size:18px}}

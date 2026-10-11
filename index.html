@@ -15,7 +15,7 @@
     <!-- prettier-ignore -->
     
   
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=20261011-offer" />
     <link rel="icon" href="data:," />
   <script src="./backend-config.js?v=20261011"></script><script defer src="./pixels.js?v=20261011"></script></head>
   <body>
@@ -349,11 +349,14 @@
             </li>
           </ul>
 
+          <div id="product-offer" class="product-offer">
           <div class="product_pic"><img src="img/product.fast.webp" decoding="async" loading="lazy" /></div>
           <div
             style="font-size: 30px; font-weight: bold"
             class="product_name"
           ></div>
+          <a class="btn product-order-button" href="./order.html" data-next="1">立即五折訂購</a>
+          </div>
         </center>
 
         <section class="comments">
@@ -561,16 +564,7 @@
     >
       <div class="comeback_wrapper">
         <div class="comeback_container center-block">
-          <span
-            class="comeback_close"
-            role="button" tabindex="0" aria-label="關閉"
-          >
-            <img
-              src="img/cross.png"
-              width="21"
-              height="21"
-              class="cross" decoding="async" loading="lazy" />
-          </span>
+          <button type="button" class="comeback_close" aria-label="關閉優惠彈窗"><span aria-hidden="true">×</span> 關閉</button>
           <h1 style="margin: 0 auto; width: 300px">等待！</h1>
           <p>特別適合你！ 促銷只在今天, 以50％的折扣提供價格！</p>
           <br />
@@ -592,7 +586,8 @@
     </div>
     
     
-      <script src="./config.js?v=20261010-order-2"></script>
-    <script src="./app.js"></script>
+    <div id="floating-order" class="floating-order" hidden><button type="button" id="jump-to-offer">立即領取五折優惠 ↓</button></div>
+      <script src="./config.js?v=20261011-offer"></script>
+    <script src="./app.js?v=20261011-offer"></script>
   </body>
           </html>

@@ -43,7 +43,7 @@ const context = {
     baseURI: 'https://example.github.io/my-site/',
     querySelectorAll: selector => selector === 'a[data-next="1"]' ? links : [],
     querySelector: selector => selector === '.min' ? min : sec,
-    getElementById: () => modal,
+    getElementById: id => id === 'comeback' ? modal : null,
     addEventListener() {},
   },
   setTimeout: fn => { scheduled = fn; return 1; }, clearTimeout() {},
