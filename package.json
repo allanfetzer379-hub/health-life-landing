@@ -5,7 +5,7 @@
   "description": "Static local copy of the supplied landing page",
   "scripts": {
     "start": "node tools/server.mjs",
-    "check": "node tools/check.mjs && node tools/check-order.mjs"
+    "check": "node tools/check.mjs && node tools/check-order.mjs && node tools/check-pixels.mjs"
   },
   "engines": { "node": ">=18" }
 }

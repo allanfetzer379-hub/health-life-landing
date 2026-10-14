@@ -111,3 +111,14 @@ GitHub 官方步骤：[配置 GitHub Pages 发布来源](https://docs.github.com
 - 浏览器访问原站时部分素材偶发加载失败；本项目重试下载后全部补齐，显示原始图片，不复刻临时网络故障。
 
 广告链接示例：`?utm_source=facebook&ad_id=你的广告ID`。参数会带入购买页和订单记录；后台支持按广告来源 ID 筛选。
+
+## 广告事件（2026-10-14）
+
+- PageView：每次页面加载。
+- ViewContent：落地页商品区域进入视口，每次页面访问一次。
+- InitiateCheckout：进入 order.html，同一标签页 30 分钟内去重；成功下单后开启新的结账流程。
+- Purchase：仅 thanks.html 读取后台成功提交后保存的订单编号时上报；按像素、事件和订单编号在浏览器本地去重。保留原 Lead / TikTok SubmitForm，兼容现有留资广告。
+- 固定单盒商品 nk-one-box，数量 1，金额 1389 TWD，与当前数据库价格一致；修改套餐价格时必须同步 pixels.js 和数据库。货到付款的 Purchase 代表订单受理，并非已收款。
+- 无购物车，不上报 AddToCart；滚动按钮不触发结账。事件参数不包含姓名、电话。
+- 浏览器像素受广告拦截、网络及浏览器存储限制影响，本地去重不代表平台确认接收，也不提供跨设备去重保证。
+- 验证：node tools/check-pixels.mjs（模拟像素，不创建真实订单、不发送真实广告事件）。

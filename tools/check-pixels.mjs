@@ -1,0 +1,43 @@
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import {readFile} from 'node:fs/promises';
+const source=await readFile(new URL('../pixels.js',import.meta.url),'utf8');
+const storage=()=>{const data=new Map();return {getItem:k=>data.get(k)||null,setItem:(k,v)=>data.set(k,String(v)),removeItem:k=>data.delete(k)};};
+const session=storage(),local=storage();
+let serial=0;
+async function page(path,{delayed=false,fail=false,blocked=false}={}){
+ const events=[];let visible,release;
+ const observer=function(callback){visible=callback;this.observe=()=>{};this.disconnect=()=>{};};
+ const window={BACKEND_CONFIG:{ready:true,url:'https://test.invalid',publishableKey:'test'},sessionStorage:session,localStorage:local,IntersectionObserver:observer,fbq:(...args)=>events.push(args),ttq:{load(){},instance:()=>({page(){},track:(...args)=>events.push(['tk',...args])})}};
+ if(blocked){Object.defineProperty(window,'sessionStorage',{get(){throw Error('blocked')}});Object.defineProperty(window,'localStorage',{get(){throw Error('blocked')}});}
+ const result={ok:!fail,json:async()=>({facebook:[{id:'123',enabled:true},{id:'456',enabled:false}],tiktok:[{id:'TK123',enabled:true}]})};
+ vm.runInNewContext(source,{window,document:{getElementById:()=>path.endsWith('index.html')?{}:null},location:{pathname:path},crypto:{randomUUID:()=>String(++serial)},Date,IntersectionObserver:observer,fetch:()=>delayed?new Promise(r=>release=()=>r(result)):Promise.resolve(result)});
+ await new Promise(r=>setImmediate(r));
+ return {events,view(){visible([{isIntersecting:true}]);},async release(){release();await new Promise(r=>setImmediate(r));}};
+}
+const count=(p,name)=>p.events.filter(e=>e[0]==='trackSingle'&&e[2]===name).length;
+const landing=await page('/index.html',{delayed:true});
+assert.equal(count(landing,'ViewContent'),0);
+landing.view();assert.equal(count(landing,'ViewContent'),0);
+await landing.release();assert.equal(count(landing,'ViewContent'),1);
+assert.equal(count(landing,'InitiateCheckout'),0);
+const order=await page('/order.html');assert.equal(count(order,'InitiateCheckout'),1);
+assert.equal(count(order,'Purchase'),0);
+assert.equal(count(await page('/order.html'),'InitiateCheckout'),0,'refresh cannot repeat checkout');
+assert.equal(count(await page('/thanks.html'),'Purchase'),0,'direct success URL cannot create purchase');
+session.setItem('nk-confirmed-order','NK-verified');
+const success=await page('/thanks.html');
+assert.equal(count(success,'Purchase'),1);assert.equal(count(success,'Lead'),1);
+const purchase=success.events.find(e=>e[2]==='Purchase');
+assert.equal(purchase[3].value,1389);assert.equal(purchase[3].currency,'TWD');assert.equal(purchase[4].eventID,'Purchase:NK-verified');
+assert.equal(success.events.filter(e=>e[0]==='tk'&&e[1]==='Purchase').length,1);
+assert.equal(count(await page('/thanks.html'),'Purchase'),0);
+session.setItem('nk-confirmed-order','NK-verified');
+assert.equal(count(await page('/thanks.html'),'Purchase'),0,'replayed order ID cannot repeat purchase');
+assert.equal(count(await page('/order.html'),'InitiateCheckout'),1,'new order after success starts a new checkout');
+session.setItem('nk-confirmed-order','NK-later');
+await page('/thanks.html',{fail:true});assert.equal(session.getItem('nk-confirmed-order'),'NK-later');
+assert.equal(count(await page('/thanks.html'),'Purchase'),1,'configuration failure preserves retry');
+await page('/order.html',{blocked:true});
+for(const p of [landing,order,success])assert.equal(count(p,'AddToCart'),0);
+console.log('PASS: visibility/slow config, checkout refresh, confirmed purchase only, amount/currency, per-platform order dedupe, retry, blocked storage; no live events or orders sent.');
