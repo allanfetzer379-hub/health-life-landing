@@ -12,13 +12,13 @@ header h2 span{font-size:1.5rem}
 .product .left{width:100%;text-align:center;margin-bottom:30px;}
 .product .left img{max-width:100%}
 .product .left .product_name{font-size:30px;font-weight:bold;color:#fff;}
-.product .right{width:100%;padding-top:2rem;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.product .right{width:100%;padding-top:2rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;}
 .product .discount{background-image:linear-gradient(to right,#ff0,#ffeb3b);color:#666;border-radius:10px;transform:skew(-15deg);font-weight:700;font-style:italic;text-align:center;width:40%;margin-left:10px;height:5rem;margin-top:-.3rem}
 .product .discount div{transform:skew(15deg);letter-spacing:-3px;font-size:3.5rem;line-height:5rem}
 .product .discount div::after{background:#000;width:100%;height:2px;content:" ";display:block;position:absolute;top:34px;transform:rotate(-10deg)}
-.product .price{color:#1bff26;font-size:3rem;font-weight:700;letter-spacing:-3px;margin:0;line-height:1.08;display:block;min-height:3.25rem;position:relative;z-index:1}
-.product .price > div{color:#fff;display:block;margin:0;padding:0;line-height:1.08;white-space:nowrap}
-.product .discount-text{margin:14px 0 4px;color:#fff;line-height:1.25;display:block;position:relative;z-index:2}
+.product .price{color:#fff!important;font-size:3rem;font-weight:700;letter-spacing:-3px;margin:0!important;line-height:1.08;display:block;min-height:3.25rem;position:relative;z-index:1;overflow:visible}
+.product .price > div{color:#fff!important;display:block;margin:0!important;padding:0;line-height:1.08;white-space:nowrap}
+.product .discount-text{margin:14px 0 4px!important;color:#fff!important;line-height:1.25;display:block;position:relative;z-index:2;min-height:1.25em}
 .sconto{font-weight:600;font-size:2.8rem;text-align:center;padding:10px 0}
 .sconto div{color:#fff;animation:color-change 1s infinite;perspective:1000}
 @keyframes color-change{0%{color:#fff;}
