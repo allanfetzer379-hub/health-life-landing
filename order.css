@@ -75,3 +75,10 @@ input,select,textarea,button{max-width:100%}
 
 }
 
+
+/* Keep the fixed purchase action clear of phone safe areas and page content. */
+body{padding-bottom:calc(86px + env(safe-area-inset-bottom,0px))}
+#form1{scroll-margin-top:24px}
+.floating-buy{position:fixed;z-index:1000;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:420px;min-height:54px;border:1px solid #ffe699;border-radius:12px;background:linear-gradient(180deg,#ffe184,#e6aa24);color:#302000;font-size:20px;font-weight:700;cursor:pointer;box-shadow:0 5px 24px #0008}
+.floating-buy:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.floating-buy[hidden]{display:none}
