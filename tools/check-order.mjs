@@ -13,7 +13,7 @@ function harness() {
   const alerts = [], requests = [];
   let resolveRequest;
   const location = { href: 'https://example.github.io/site/order.html?subid=abc&entry_source=test', search: '?subid=abc&entry_source=test', hostname: 'example.github.io', origin: 'https://example.github.io' };
-  const window = { location, BACKEND_CONFIG: {ready:true,url:'https://orders.example.test',publishableKey:'public'}, LANDING_CONFIG: { orderEndpoint: 'https://orders.example.test/api/order', entryPath: 'site', formType: 'copy-test', formName: 'copy-test', enableTracking: false } };
+  const window = { location, BACKEND_CONFIG: {ready:true,url:'https://orders.example.test',publishableKey:'public'}, LANDING_CONFIG: { productSku: 'nk-emperor-deer' } };
   const document = { cookie: '', referrer: '', getElementById: () => form, querySelector: () => form, addEventListener() {} };
   vm.runInNewContext(bridge, {
     window, location, document, URL, URLSearchParams, Date, crypto:{randomUUID:()=> '11111111-1111-4111-8111-111111111111'}, alert: message => alerts.push(message),
@@ -39,6 +39,8 @@ assert.equal(success.button.disabled, true);
 assert.equal(success.button.textContent, '提交中…');
 const payload = JSON.parse(success.requests[0].options.body);
 assert.equal(payload.phone, '0900000000');
+assert.equal(payload.sku, 'nk-emperor-deer');
+assert.equal(Object.hasOwn(payload, 'price'), false);
 assert.equal(payload.request_id, '11111111-1111-4111-8111-111111111111');
 assert.equal(payload.source, 'test');
 assert.equal(success.requests[0].url,'https://orders.example.test/functions/v1/submit-order');

@@ -3,8 +3,8 @@
  var c=window.BACKEND_CONFIG||{},settings={facebook:[],tiktok:[]};
  function loadFacebook(){if(window.fbq)return;var q=window.fbq=function(){q.callMethod?q.callMethod.apply(q,arguments):q.queue.push(arguments);};q.queue=[];q.loaded=true;q.version='2.0';window._fbq=q;var script=document.createElement('script');script.async=true;script.src='https://connect.facebook.net/en_US/fbevents.js';document.head.appendChild(script);}
  function loadTikTok(){if(window.ttq)return;window.TiktokAnalyticsObject='ttq';var q=window.ttq=[];q.methods=['page','track','identify','instances','debug','on','off','once','ready','alias','group','enableCookie','disableCookie'];q.setAndDefer=function(target,method){target[method]=function(){target.push([method].concat(Array.prototype.slice.call(arguments)));};};q.methods.forEach(function(method){q.setAndDefer(q,method);});q._i={};q._t={};q._o={};q.instance=function(id){var instance=q._i[id]||[];q.methods.forEach(function(method){q.setAndDefer(instance,method);});return instance;};q.load=function(id){q._i[id]=[];q._i[id]._u='https://analytics.tiktok.com/i18n/pixel/events.js';q._t[id]=Date.now();q._o[id]={};var script=document.createElement('script');script.async=true;script.src=q._i[id]._u+'?sdkid='+encodeURIComponent(id)+'&lib=ttq';document.head.appendChild(script);};}
- // Fixed one-box offer: matches the database default (quantity 1, TWD 1389).
- var product={content_ids:['nk-one-box'],content_type:'product',contents:[{id:'nk-one-box',quantity:1,item_price:1389}],value:1389,currency:'TWD',num_items:1};
+ // Fixed one-box offer: matches the database default (quantity 1, TWD 1380).
+ var product={content_ids:['di-huang-lu-jing-wan-one-box'],content_type:'product',contents:[{id:'di-huang-lu-jing-wan-one-box',quantity:1,item_price:1380}],value:1380,currency:'TWD',num_items:1};
  var ready=false,pending=[],memory={};
  function get(storage,key){try{return storage.getItem(key);}catch(ignore){return memory[key]||null;}}
  function put(storage,key,value){memory[key]=value;try{storage.setItem(key,value);}catch(ignore){}}
@@ -18,7 +18,7 @@
    if(get(storage,key))return;
    try{
     if(platform==='facebook')window.fbq('trackSingle',p.id,event,event==='Lead'?{}:product,{eventID:event+':'+id});
-    else window.ttq.instance(p.id).track(event==='Lead'?'SubmitForm':event,event==='Lead'?{}:{content_ids:product.content_ids,content_type:'product',quantity:1,value:1389,currency:'TWD'},{event_id:event+':'+id});
+    else window.ttq.instance(p.id).track(event==='Lead'?'SubmitForm':event,event==='Lead'?{}:{content_ids:product.content_ids,content_type:'product',quantity:1,value:1380,currency:'TWD'},{event_id:event+':'+id});
     put(storage,key,'1');
    }catch(ignore){/* A blocked pixel must not affect the checkout. */}
   });});

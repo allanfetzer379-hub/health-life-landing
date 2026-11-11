@@ -29,7 +29,7 @@ session.setItem('nk-confirmed-order','NK-verified');
 const success=await page('/thanks.html');
 assert.equal(count(success,'Purchase'),1);assert.equal(count(success,'Lead'),1);
 const purchase=success.events.find(e=>e[2]==='Purchase');
-assert.equal(purchase[3].value,1389);assert.equal(purchase[3].currency,'TWD');assert.equal(purchase[4].eventID,'Purchase:NK-verified');
+assert.equal(purchase[3].value,1380);assert.equal(purchase[3].currency,'TWD');assert.equal(purchase[4].eventID,'Purchase:NK-verified');
 assert.equal(success.events.filter(e=>e[0]==='tk'&&e[1]==='Purchase').length,1);
 assert.equal(count(await page('/thanks.html'),'Purchase'),0);
 session.setItem('nk-confirmed-order','NK-verified');
