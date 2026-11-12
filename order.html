@@ -12,11 +12,105 @@
 	
 
 <link rel="stylesheet" href="./order.css?v=20261111-product-intro">
-<script src="./backend-config.js?v=20261011"></script><script defer src="./pixels.js?v=20261111-emperor"></script></head>
+<script src="./backend-config.js?v=20261011"></script><script defer src="./pixels.js?v=20261111-emperor"></script><style>
+  .top-promo-banner {
+    margin: 14px 12px 0;
+    padding: 16px 14px 14px;
+    border: 1px solid #735a2d;
+    border-radius: 14px;
+    background: radial-gradient(ellipse at top, #382a16, #171410 78%);
+    color: #fff2d6;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .top-promo-banner > div:first-child {
+    color: #f7d586;
+    font-size: clamp(15px, 4.4vw, 18px);
+    font-weight: 800;
+    text-wrap: balance;
+  }
+
+  .top-promo-banner > div:nth-child(2) {
+    margin-top: 6px;
+    font-size: clamp(14px, 4vw, 16px);
+    font-weight: 700;
+    text-wrap: balance;
+  }
+
+  .top-promo-banner > div:last-child {
+    width: fit-content;
+    margin: 11px auto 0;
+    padding: 3px 13px;
+    border: 1px solid #735a2d;
+    border-radius: 999px;
+    background: #211a10;
+    color: #fff2d6;
+    font-size: 14px;
+  }
+
+  .top-promo-banner #stock-count {
+    color: #ffd775;
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .trust-badges {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    margin: 32px 0 16px;
+    text-align: left;
+  }
+
+  .trust-badges > div {
+    padding: 16px;
+    border: 1px solid #86efac;
+    border-radius: 12px;
+    background: #f0fdf4;
+    color: #173d2a;
+    font-size: 18px;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+  }
+
+  .trust-badges strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #14532d;
+    font-size: 19px;
+    line-height: 1.45;
+  }
+
+  .product .discount .old_price { text-decoration: line-through; }
+  #form1 label { font-size: 18px; }
+  #form1 input { height: 50px; font-size: 18px; box-sizing: border-box; }
+  #order-record-toast {
+    position: fixed;
+    left: 12px;
+    bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+    z-index: 20;
+    max-width: min(420px, calc(100% - 24px));
+    box-sizing: border-box;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: #222;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.45;
+    pointer-events: none;
+  }
+</style>
+</head>
 <body>
+<div class="top-promo-banner">
+  <div>【台灣男科研究所・官方唯一指定直營通道】</div>
+  <div>🔥 專案補貼名額倒數中！今日下單享 50% 研發補助，每人限購一盒！</div>
+  <div>目前僅剩 <span id="stock-count">7</span> 組名額</div>
+</div>
 <header class="product-intro">
   <h1 class="product_name">帝皇鹿精丸</h1>
-  <p class="product-intro-category">男士日常保養</p>
   <figure class="product-intro-photo">
     <img src="img/product-emperor-deer-transparent.png" width="820" height="775"
       alt="帝皇鹿精丸外盒與瓶身" decoding="async" fetchpriority="high">
@@ -109,7 +203,22 @@
 <button class="button-submit" type="submit">
 <span class="button-submit-text" style="font-size: 1.2rem;margin-left: 32px;">立即訂購</span>
 <span class="button-submit-arrow"></span>
-</button><br>
+</button>
+<div class="trust-badges">
+  <div>
+    <strong>📦 100% 絕對隱私發貨：</strong>外箱採用普通牛皮紙箱封裝，寄件欄僅標註「日常禮品」，絕不出現「帝皇丸」或任何敏感字眼，家人代收、取貨絕對不尷尬！
+  </div>
+  <div>
+    <strong>💵 免綁信用卡・貨到付款：</strong>無需線上刷卡，包裹送到您手上確認無誤後再付現，安全零風險。
+  </div>
+  <div>
+    <strong>🚚 全台灣免運費速達：</strong>今日下單，最快隔日安排出貨，全台灣免收運費。
+  </div>
+  <div>
+    <strong>🌿 純漢方溫和萃取：</strong>不含西藥威而鋼成分，不傷肝腎、不引起心悸臉紅，高血壓與熟齡體質皆可安心使用。
+  </div>
+</div>
+<br>
 
 
 <p style="text-align: center;margin: 3px auto;">貨到付款</p>
@@ -135,5 +244,33 @@
 <script src="./order-floating.js?v=20261017-buy"></script>
 <script src="./order.js"></script>
 <script src="./order-bridge.js?v=20261111-emperor"></script>
+<div id="order-record-toast" hidden></div>
+<script>
+(() => {
+  const orderRecords = [
+    "剛剛 台北市大安區 陳先生（58歲）成功搶購了【帝皇丸】半價優惠名額（NT$ 1,380）",
+    "1分鐘前 新北市板橋區 林大哥（63歲）成功訂購了【帝皇丸】1盒（60粒裝）",
+    "2分鐘前 台中市西屯區 張先生（55歲）成功搶購了【帝皇丸】半價優惠名額（NT$ 1,380）",
+    "3分鐘前 高雄市三民區 黃先生（61歲）成功訂購了【帝皇丸】1盒（60粒裝）",
+    "5分鐘前 桃園市中壢區 李大哥（54歲）成功搶購了【帝皇丸】半價優惠名額（NT$ 1,380）",
+    "6分鐘前 台南市東區 吳先生（66歲）成功訂購了【帝皇丸】1盒（60粒裝）",
+    "8分鐘前 新竹市東區 蔡先生（52歲）成功搶購了【帝皇丸】半價優惠名額（NT$ 1,380）",
+    "9分鐘前 彰化縣員林市 許大哥（60歲）成功訂購了【帝皇丸】1盒（60粒裝）",
+    "12分鐘前 屏東縣屏東市 鄭先生（68歲）成功搶購了【帝皇丸】半價優惠名額（NT$ 1,380）",
+    "15分鐘前 嘉義市西區 謝先生（57歲）成功訂購了【帝皇丸】1盒（60粒裝）"
+  ];
+  const toast = document.getElementById("order-record-toast");
+  let index = 0;
+
+  function showOrderRecord() {
+    toast.textContent = orderRecords[index];
+    toast.hidden = false;
+    index = (index + 1) % orderRecords.length;
+  }
+
+  showOrderRecord();
+  window.setInterval(showOrderRecord, 5000);
+})();
+</script>
 </body>
 </html>
