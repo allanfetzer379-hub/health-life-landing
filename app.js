@@ -51,18 +51,45 @@
 
   const modal = document.getElementById('comeback');
   const close = modal.querySelector('.comeback_close');
+  const offer = document.getElementById('product-offer');
+  const floating = document.getElementById('floating-order');
+  const jump = document.getElementById('jump-to-offer');
+  const popupKey = 'nk-offer-popup:' + config.productSku;
+  let waitedLongEnough = false;
+  let reachedOffer = false;
   let shown = false;
   let previouslyFocused;
   function openPopup() {
-    if (!config.exitPopup || shown) return;
     shown = true;
+    try {
+      if (window.sessionStorage.getItem(popupKey) === '1') return;
+      window.sessionStorage.setItem(popupKey, '1');
+    } catch {
+      // 存储不可用时，当前页面仍只弹一次。
+    }
     previouslyFocused = document.activeElement;
     modal.style.display = 'block';
     close.focus({ preventScroll: true });
   }
   function closePopup() {
     modal.style.display = 'none';
+    updateOffers();
     previouslyFocused?.focus({ preventScroll: true });
+  }
+  function updateOffers() {
+    const visible = document.visibilityState === 'visible';
+    if (visible && offer && !reachedOffer) {
+      const rect = offer.getBoundingClientRect();
+      reachedOffer = rect.top < window.innerHeight && rect.bottom > 0;
+    }
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollable > 0 ? window.scrollY / scrollable : 0;
+    if (config.exitPopup && visible && waitedLongEnough && progress > 0.25 && !reachedOffer && !shown) {
+      openPopup();
+    }
+    if (floating) {
+      floating.hidden = reachedOffer || progress <= 0.30 || modal.style.display === 'block';
+    }
   }
   close.addEventListener('click', closePopup);
   close.addEventListener('keydown', event => {
@@ -88,28 +115,24 @@
     }
   });
   if (config.exitPopup) {
-    const popupTimer = setTimeout(openPopup, 3000);
-    window.addEventListener('pagehide', () => clearTimeout(popupTimer), { once: true });
+    setTimeout(() => {
+      waitedLongEnough = true;
+      updateOffers();
+    }, 12000);
   }
 
-  const offer = document.getElementById('product-offer');
-  const floating = document.getElementById('floating-order');
-  const jump = document.getElementById('jump-to-offer');
-  if (offer && floating && jump) {
-    let reachedOffer = false;
-    function updateFloating() {
-      const rect = offer.getBoundingClientRect();
-      if (rect.top < window.innerHeight * 0.75 && rect.bottom > 0) reachedOffer = true;
-      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-      const pastThreshold = scrollable > 0 && window.scrollY / scrollable > 0.3;
-      floating.hidden = reachedOffer || !pastThreshold;
-    }
+  if (offer && jump) {
     jump.addEventListener('click', () => {
       offer.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'end' });
     });
-    window.addEventListener('scroll', updateFloating, { passive: true });
-    window.addEventListener('resize', updateFloating);
-    window.addEventListener('load', updateFloating);
-    updateFloating();
   }
+  window.addEventListener('scroll', updateOffers, { passive: true });
+  window.addEventListener('resize', updateOffers);
+  window.addEventListener('load', updateOffers);
+  window.addEventListener('pageshow', event => {
+    if (event.persisted && modal.style.display === 'block') closePopup();
+    else updateOffers();
+  });
+  document.addEventListener('visibilitychange', updateOffers);
+  updateOffers();
 })();
