@@ -118,7 +118,7 @@
     setTimeout(() => {
       waitedLongEnough = true;
       updateOffers();
-    }, 12000);
+    }, 8000);
   }
 
   if (offer && jump) {
