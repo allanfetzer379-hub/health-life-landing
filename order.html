@@ -7,106 +7,15 @@
 <meta charset="UTF-8">
 <link rel="preconnect" href="https://kasawxvqxtsnjlbysshv.supabase.co" crossorigin>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<meta name="googlebot" content="noindex,nofollow,noarchive,nosnippet">
 
 
 <link href="img/product-emperor-deer-transparent.png" rel="icon" type="image/png">
 	
 
-<link rel="stylesheet" href="./order.css?v=20261111-product-intro">
-<script src="./backend-config.js?v=20261011"></script><script defer src="./pixels.js?v=20261111-emperor"></script><style>
-  html, body { overflow-x: clip; overscroll-behavior-x: none; }
-  body { width: 100%; min-width: 0; }
-  .floating-buy { box-sizing: border-box; }
-
-  .top-promo-banner {
-    margin: 14px 12px 0;
-    padding: 16px 14px 14px;
-    border: 1px solid #735a2d;
-    border-radius: 14px;
-    background: radial-gradient(ellipse at top, #382a16, #171410 78%);
-    color: #fff2d6;
-    text-align: center;
-    line-height: 1.5;
-  }
-
-  .top-promo-banner > div:first-child {
-    color: #f7d586;
-    font-size: clamp(15px, 4.4vw, 18px);
-    font-weight: 800;
-    text-wrap: balance;
-  }
-
-  .top-promo-banner > div:nth-child(2) {
-    margin-top: 6px;
-    font-size: clamp(14px, 4vw, 16px);
-    font-weight: 700;
-    text-wrap: balance;
-  }
-
-  .top-promo-banner > div:last-child {
-    width: fit-content;
-    margin: 11px auto 0;
-    padding: 3px 13px;
-    border: 1px solid #735a2d;
-    border-radius: 999px;
-    background: #211a10;
-    color: #fff2d6;
-    font-size: 14px;
-  }
-
-  .top-promo-banner #stock-count {
-    color: #ffd775;
-    font-size: 22px;
-    font-weight: 900;
-    line-height: 1;
-  }
-
-  .trust-badges {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 14px;
-    margin: 32px 0 16px;
-    text-align: left;
-  }
-
-  .trust-badges > div {
-    padding: 16px;
-    border: 1px solid #86efac;
-    border-radius: 12px;
-    background: #f0fdf4;
-    color: #173d2a;
-    font-size: 18px;
-    line-height: 1.65;
-    overflow-wrap: anywhere;
-  }
-
-  .trust-badges strong {
-    display: block;
-    margin-bottom: 4px;
-    color: #14532d;
-    font-size: 19px;
-    line-height: 1.45;
-  }
-
-  .product .discount .old_price { text-decoration: line-through; }
-  #form1 label { font-size: 18px; }
-  #form1 input { height: 50px; font-size: 18px; box-sizing: border-box; }
-  #order-record-toast {
-    position: fixed;
-    left: 12px;
-    bottom: calc(80px + env(safe-area-inset-bottom, 0px));
-    z-index: 20;
-    max-width: min(420px, calc(100% - 24px));
-    box-sizing: border-box;
-    padding: 8px 12px;
-    border-radius: 8px;
-    background: #222;
-    color: #fff;
-    font-size: 14px;
-    line-height: 1.45;
-    pointer-events: none;
-  }
-</style>
+<link rel="stylesheet" href="./order.css?v=20261118-checkout">
+<script src="./backend-config.js?v=20261011"></script><script defer src="./pixels.js?v=20261111-emperor"></script>
 </head>
 <body>
 <div class="top-promo-banner">
@@ -114,6 +23,7 @@
   <div>🔥 專案補貼名額倒數中！今日下單享 50% 研發補助！</div>
   <div>目前僅剩 <span id="stock-count">7</span> 組名額</div>
 </div>
+<main class="checkout-layout">
 <header class="product-intro">
   <h1 class="product_name">帝皇鹿精丸</h1>
   <figure class="product-intro-photo">
@@ -127,8 +37,19 @@
     </dl>
     <p>成分與使用方式請以產品外盒標示為準。</p>
   </div>
-</header>
+<div class="product">
+<div class="left">
+<div class="product_name">帝皇鹿精丸</div>
+</div>
+<div class="right">
 
+<div class="discount"><div class="old_price">2,760 TWD</div></div>
+<div class="discount-text">優惠價：</div>
+<div class="price new_price"><div>1,380 TWD</div></div>
+
+</div>
+</div>
+</header>
 
 <div class="countdown-block">
 <div class="countdown-container">
@@ -149,32 +70,14 @@
 </div>
 </div>
 
-<div>
-
-<div class="product">
-<div class="left">
-<div class="product_name">帝皇鹿精丸</div>
-</div>
-<div class="right" style="padding-top: 0;">
-
-<div class="discount"><div class="old_price">2,760 TWD</div></div>
-<div class="discount-text">優惠價：</div>
-<div class="price new_price"><div>1,380 TWD</div></div>
-
-</div>
-</div>
-
-
-
-<div>
-
-<form action="#" method="post" onsubmit="return false" id="form1">
+<form action="#" method="post" onsubmit="return false" id="form1" tabindex="-1">
+<div class="checkout-fields">
 <div class="name-input">
 <label for="name1" aria-label="姓名"><svg enable-background="new 0 0 50 50" height="30px" version="1.1" viewbox="0 0 50 50" width="30px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink"><circle cx="25" cy="25" fill="none" r="24" stroke="#000000" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"></circle><rect fill="none" height="50" width="50"></rect><path d="M29.933,35.528c-0.146-1.612-0.09-2.737-0.09-4.21c0.73-0.383,2.038-2.825,2.259-4.888c0.574-0.047,1.479-0.607,1.744-2.818  c0.143-1.187-0.425-1.855-0.771-2.065c0.934-2.809,2.874-11.499-3.588-12.397c-0.665-1.168-2.368-1.759-4.581-1.759  c-8.854,0.163-9.922,6.686-7.981,14.156c-0.345,0.21-0.913,0.878-0.771,2.065c0.266,2.211,1.17,2.771,1.744,2.818  c0.22,2.062,1.58,4.505,2.312,4.888c0,1.473,0.055,2.598-0.091,4.21c-1.261,3.39-7.737,3.655-11.473,6.924  c3.906,3.933,10.236,6.746,16.916,6.746s14.532-5.274,15.839-6.713C37.688,39.186,31.197,38.93,29.933,35.528z"></path></svg></label>
 <input id="name1" aria-label="姓名" autocomplete="name" type="text" placeholder="姓名" name="name" required="required" value="">
 </div>
 <div class="phone-input">
-<label for="phone1" aria-label="手機" style="padding-top: 5px;">
+<label for="phone1" aria-label="手機">
 <svg version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 34.482 34.482" viewbox="0 0 34.482 34.482" height="30px" width="30px">
 <g>
 <path d="M25.043,0H9.439c-1.3,0-2.364,1.063-2.364,2.364v7.483v14.789v7.483c0,1.301,1.064,2.363,2.364,2.363h15.604
@@ -206,9 +109,10 @@
 
 
 <button class="button-submit" type="submit">
-<span class="button-submit-text" style="font-size: 1.2rem;margin-left: 32px;">立即訂購</span>
+<span class="button-submit-text">立即訂購</span>
 <span class="button-submit-arrow"></span>
 </button>
+</div>
 <div class="trust-badges">
   <div>
     <strong>📦 100% 絕對隱私發貨：</strong>外箱採用普通牛皮紙箱封裝，寄件欄僅標註「日常禮品」，絕不出現「帝皇丸」或任何敏感字眼，家人代收、取貨絕對不尷尬！
@@ -223,33 +127,33 @@
     <strong>🌿 純漢方溫和萃取：</strong>不含西藥威而鋼成分，不傷肝腎、不引起心悸臉紅，高血壓與熟齡體質皆可安心使用。
   </div>
 </div>
-<br>
-
-
-<p style="text-align: center;margin: 3px auto;">貨到付款</p>
-<br>
-<p style="text-align: center;">安全交付！別擔心，客戶的安全對我們來說很重要！
+<div class="checkout-notes">
+<p>貨到付款</p>
+<p>安全交付！別擔心，客戶的安全對我們來說很重要！
 我們的快遞員每兩小時換一次口罩。
 </p>
-</form>
 </div>
+</form>
 
 
 
-<div class="ac_footer">
-  <span>© 2023 Copyright. <span class="product_name">帝皇鹿精丸</span></span><br>
-      
+<div id="order-record-toast" hidden></div>
+<footer class="ac_footer">
+  <span>© 2023 Copyright. <span class="product_name">帝皇鹿精丸</span></span>
+</footer>
+</main>
+
+<script src="./config.js?v=20261111-emperor"></script>
+<div class="checkout-dock" id="checkout-dock" hidden>
+  <div class="checkout-dock-inner">
+    <span class="checkout-dock-price"></span>
+    <button type="button" id="floating-buy" class="floating-buy" aria-controls="form1">立即購買</button>
   </div>
 </div>
-
-  
-
-	        <script src="./config.js?v=20261111-emperor"></script>
-<button type="button" id="floating-buy" class="floating-buy" aria-controls="form1">立即購買</button>
-<script src="./order-floating.js?v=20261017-buy"></script>
 <script src="./order.js"></script>
+<script src="./order-floating.js?v=20261118-checkout"></script>
 <script src="./order-bridge.js?v=20261113-submit-status"></script>
-<div id="order-record-toast" hidden></div>
+<script src="./security.js?v=20261020"></script>
 <script>
 (() => {
   const orderRecords = [
